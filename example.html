@@ -1,0 +1,17 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+<div id="div1"> 
+<p id="p1">The first sentence in HTML document.</p> 
+<p id="p2">The second sentence in HTML document.</p> 
+</div> 
+<script> 
+var pnode = document.createElement("p"); 
+var node = document.createTextNode("This is newly added sentence in HTML 
+document."); 
+pnode.appendChild(node); 
+var element = document.getElementById("div1"); 
+element.appendChild(pnode); 
+</script> 
+</body> 
+</html>

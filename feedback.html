@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>ABC Pharmacy - Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+       
+        .container {
+            padding: 20px;
+        }
+        .feedback-form {
+            background-color: #cce7ff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .feedback-form h3 {
+            color: #4CAF50;
+        }
+        .feedback-form input, .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .feedback-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .feedback-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function showPopup(event) {
+            event.preventDefault(); 
+            alert("Thank you for your feedback! We appreciate your input.");
+            document.querySelector('form').reset();  
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>ABC Pharmacy - Feedback</h1>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="about us.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="appointment.html">Appointment</a>
+    </nav>
+    <div class="container">
+        <div class="feedback-form">
+            <h3>Provide Your Feedback</h3>
+            <form onsubmit="showPopup(event)">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Your Feedback:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <input type="submit" value="Submit Feedback">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>2025 ABC Pharmacy. All rights reserved.</p>
+    </footer>
+</body>
+</html>

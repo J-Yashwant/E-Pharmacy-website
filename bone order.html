@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order Products - ABC Pharmacy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            max-width: 45%;
+            padding: 20px;
+            background-color: #cce7ff;
+            border-radius: 10px;
+        }
+
+        .product {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .product label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .buy-button-container {
+            margin-top: 30px;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* Popup Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 100px;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .modal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .modal button:hover {
+            background: #45a049;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            float: right;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Order Your Products - ABC Pharmacy</h1>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="about-us.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="appointment.html">Appointment</a>
+    </nav>
+
+    <div class="container">
+        <h2>Select Products to Order</h2>
+
+        <form id="orderForm" onsubmit="return validateForm(event)">
+            <div class="columns">
+                <div class="column">
+                    <h3>Our Tablets</h3>
+                    <div class="product">
+                        <label for="tablet1">Calcium Tablets</label>
+                        <input type="number" id="tablet1" name="tablet1" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="tablet2">Vitamin D3 Tablets</label>
+                        <input type="number" id="tablet2" name="tablet2" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="tablet3">Magnesium Supplements</label>
+                        <input type="number" id="tablet3" name="tablet3" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="tablet4">Bone Health Multivitamins</label>
+                        <input type="number" id="tablet4" name="tablet4" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="tablet5">Collagen Tablets</label>
+                        <input type="number" id="tablet5" name="tablet5" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="tablet6">Osteo Support Tablets</label>
+                        <input type="number" id="tablet6" name="tablet6" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h3>Our Serums</h3>
+                    <div class="product">
+                        <label for="serum1">Bone Repair Serum</label>
+                        <input type="number" id="serum1" name="serum1" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="serum2">Calcium Infused Serum</label>
+                        <input type="number" id="serum2" name="serum2" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="serum3">Collagen Boosting Serum</label>
+                        <input type="number" id="serum3" name="serum3" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="serum4">Vitamin D Serum</label>
+                        <input type="number" id="serum4" name="serum4" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="serum5">Magnesium Serum</label>
+                        <input type="number" id="serum5" name="serum5" min="0" value="0">
+                    </div>
+                    <div class="product">
+                        <label for="serum6">Bone Strengthening Serum</label>
+                        <input type="number" id="serum6" name="serum6" min="0" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="buy-button-container">
+                <button type="submit" class="buy-button">Add to Cart</button>
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+    </div>
+
+    <!-- Popup Confirmation -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Order Confirmation</h2>
+            <p>Your order has been successfully added to the cart.</p>
+            <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ABC Pharmacy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let items = document.querySelectorAll("input[type='number']");
+            let cart = [];
+
+            items.forEach(item => {
+                if (item.value > 0) {
+                    cart.push({ name: item.previousElementSibling.textContent, quantity: item.value });
+                }
+            });
+
+            if (cart.length === 0) {
+                document.getElementById("errorMessage").textContent = "Please select at least one product.";
+                return false;
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            document.getElementById("orderModal").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("orderModal").style.display = "none";
+        }
+
+        function proceedToCheckout() {
+            window.location.href = "cart.html";
+        }
+    </script>
+</body>
+</html>

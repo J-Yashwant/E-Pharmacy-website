@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shopping Cart - ABC Pharmacy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            padding: 25px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checkout-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart - ABC Pharmacy</h1>
+    </header>
+
+    <div class="container">
+        <h2>Your Cart</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="cartBody">
+                <tr><td colspan="2">Your cart is empty.</td></tr>
+            </tbody>
+        </table>
+
+        <button class="checkout-button" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartBody = document.getElementById("cartBody");
+            cartBody.innerHTML = cart.length ? cart.map(item => `<tr><td>${item.name}</td><td>${item.quantity}</td></tr>`).join("") : "<tr><td colspan='2'>Your cart is empty.</td></tr>";
+        }
+
+        function checkout() {
+            localStorage.removeItem("cart");
+            alert("Order placed successfully!");
+            loadCart();
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

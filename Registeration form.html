@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration form</title>
+    <style>
+        body { 
+            font-family: Arial;
+            background-color: #9abe54;
+            display: flex;
+            justify-content: center;
+            align-items: center;   
+        }
+        .container {
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: white;
+        }
+        label {
+            font-weight: bold;
+            color: #d62e63;
+        }
+        input[type="text"], input[type="date"], input[type="number"], input[type="password"], input[type="submit"] {    
+            padding: 8px;
+            margin: 5px 0 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px ;
+        }
+        .form-group label {
+            width: 120px;
+            text-align: left;
+        }
+        .submit {
+            display: flex;
+            padding: 8px 8px;
+            justify-content: right;
+        }
+        a.anchor-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #d62e63;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        body { 
+            background-image: url('pharmacy welcoming.jpg'); 
+            position: fixed;
+            background-size: cover;
+        }
+        button{
+            cursor: cell;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="#" method="post" onsubmit="return registerUser()">
+            <h1>Welcome To ABC Pharmacy</h1>
+            <h2>Please register here</h2><hr>
+
+            <div class="form-group">
+                <label>Name: </label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label>Mail Id: </label>
+                <input type="text" id="mail" placeholder="Enter your mail id" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number: </label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label>Password: </label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <br>
+            <div class="submit">
+                <center>
+                    <button type="submit" class="anchor-btn">Next</button>
+                </center>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function registerUser() {
+            var currentYear = new Date().getFullYear();  
+            console.log("Current year: " + currentYear);
+            
+            var email = document.getElementById('mail').value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            var phone = document.getElementById('phone').value;
+            var phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+
+            var password = document.getElementById('password').value;
+            var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                alert("Password must be at least 8 characters long and include both letters and numbers.");
+                return false;
+            }
+
+            alert("Thank you for registering! Please confirm your details.");
+            let confirmation = prompt("Please confirm your name:", document.getElementById("name").value);
+
+            if (confirmation === null) {
+                alert("You cancelled the confirmation.");
+                return false; 
+            } else if (confirmation === document.getElementById("name").value) {
+                alert("Registration successful! The current year is " + currentYear + ".");
+                window.location.href = "home.html"; 
+                return false; 
+            } else {
+                alert("Name confirmation does not match. Please try again.");
+                return false; 
+            }
+        }
+    </script>
+</body>
+</html>

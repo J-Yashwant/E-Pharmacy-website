@@ -1,0 +1,246 @@
+<html>
+<head>
+    <title>ABC Pharmacy - Appointment Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .availability-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+        .availability-box h4 {
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f2f2f2;
+        }
+        td.available {
+            background-color: #e0f7fa;
+        }
+        td.unavailable {
+            background-color: #f8d7da;
+        }
+        .appointment-form {
+            background-color: #cce7ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .appointment-form h3 {
+            color: #4CAF50;
+        }
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Popup box styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            z-index: 1000;
+        }
+        .popup h2 {
+            color: #4CAF50;
+        }
+        .popup p {
+            color: #333;
+        }
+        .popup .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .popup .close-btn:hover {
+            background-color: #45a049;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ABC Pharmacy - Book an Appointment</h1>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="about us.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="appointment.html">Appointment</a>
+    </nav>
+    <div class="container">
+        <div class="availability-box">
+            <h4>Doctor Availability</h4>
+            <p>Check the doctor's available time slots for the week:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Morning</th>
+                        <th>Afternoon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monday - Friday</td>
+                        <td class="available">10:00 AM - 1:00 PM</td>
+                        <td class="available">4:30 PM - 9:00 PM</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Saturday,Sunday</td>
+                        <td class="available">9:00 AM - 12:00 PM</td>
+                        <td class="available">4:00 PM - 8:00 PM</td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+
+        <div class="appointment-form">
+            <h3>Book an Appointment with a Doctor</h3>
+            <form id="appointmentForm" method="POST" action="send_appointment.php" onsubmit="return showPopup(event)">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required placeholder="Enter your phone number">
+
+                <label for="date">Preferred Appointment Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Preferred Appointment Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="doctor">Select Doctor:</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="doctor1">Dr. John Doe</option>
+                    <option value="doctor2">Dr. Jane Smith</option>
+                    <option value="doctor3">Dr. Mark Lee</option>
+                </select>
+
+                <label for="reason">Reason for Visit:</label>
+                <textarea id="reason" name="reason" rows="4" required placeholder="Provide a brief description of your reason for the appointment"></textarea>
+
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popupBox">
+        <h2>Appointment Booked Successfully!</h2>
+        <p>Your appointment has been scheduled. We will contact you shortly to confirm the details.</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <footer>
+        <p>2025 ABC Pharmacy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(event) {
+            event.preventDefault();  
+            document.getElementById("overlay").style.display = "block"; 
+            document.getElementById("popupBox").style.display = "block";  
+        }
+
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popupBox").style.display = "none"; 
+        }
+    </script>
+</body>
+</html>
