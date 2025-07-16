@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="form.xsl"?>
+<registrationForm>
+    <title>Registration form</title>
+    <header>
+        <mainTitle>Welcome To ABC Pharmacy</mainTitle>
+        <subTitle>Please register here</subTitle>
+    </header>
+
+    <fields>
+        <field>
+            <label>Name</label>
+            <type>text</type>
+            <placeholder>Enter your name</placeholder>
+            <required>true</required>
+        </field>
+        <field>
+            <label>Mail Id</label>
+            <type>text</type>
+            <placeholder>Enter your mail id</placeholder>
+            <required>true</required>
+        </field>
+        <field>
+            <label>Phone Number</label>
+            <type>text</type>
+            <placeholder>Enter your phone number</placeholder>
+            <required>true</required>
+        </field>
+        <field>
+            <label>Password</label>
+            <type>password</type>
+            <placeholder>Enter your password</placeholder>
+            <required>true</required>
+        </field>
+    </fields>
+
+    <submitButton>
+        <text>Next</text>
+        <action>home.html</action>
+    </submitButton>
+</registrationForm>
